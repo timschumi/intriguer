@@ -1,3 +1,7 @@
+**WARNING:** This is a fork with custom changes. You are likely looking for
+[the original](https://github.com/seclab-yonsei/intriguer). Do not use this
+repository unless you know what you are doing!
+
 # Intriguer: Field-Level Constraint Solving for Hybrid Fuzzing
 
 Intriguer is a concolic execution engine for hybrid fuzzing.
