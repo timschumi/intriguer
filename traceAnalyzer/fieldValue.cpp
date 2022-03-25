@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cstring>
+#include <cmath>
 
 #include "z3++.h"
 #include "fieldValue.hpp"
