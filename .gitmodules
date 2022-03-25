@@ -1,3 +1,6 @@
 [submodule "third_party/z3"]
 	path = third_party/z3
 	url = https://github.com/Z3Prover/z3.git
+[submodule "intriguer_afl"]
+	path = intriguer_afl
+	url = https://github.com/timschumi/intriguer-afl
