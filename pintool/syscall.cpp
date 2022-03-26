@@ -70,6 +70,22 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
             isLibcSO = true;
         }
 
+    } else if(num == __NR_openat){
+        output << "[OPENAT FILE]\t";
+
+        output << std::hex << "0x" << ip << ":\t" << (char*)arg1 << std::endl;
+
+        if(strstr((char*)arg1, targetFileName.c_str()) != NULL){
+            isTargetFileOpen = true;
+            output << "\tOpen target file" << std::endl;
+
+            isTaintStart = true;
+        }
+
+        if(strstr((char*)arg1, "libc.so") != NULL){
+            isLibcSO = true;
+        }
+
     } else if(num == __NR_close){
         output << std::hex << "[CLOSE FILE]\t\tfd: " << arg0 << std::endl;
 
