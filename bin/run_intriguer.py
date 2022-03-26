@@ -97,7 +97,7 @@ def main():
     os.environ['ASAN_OPTIONS'] = 'detect_leaks=0'
 
     INTRIGUER_ROOT = os.environ['INTRIGUER_ROOT']
-    PIN_ROOT = os.path.join(INTRIGUER_ROOT, 'third_party/pin-3.7-97619-0d0c92f4f')
+    PIN_ROOT = os.path.join(INTRIGUER_ROOT, 'third_party/pin-3.13-98189-g60a6ef199')
 
     TARGET_ARCH = check_binary(args.cmd[0])
 

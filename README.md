@@ -38,7 +38,7 @@ $ sudo make install
 ### Build Execution Monitor
 
 ```console
-$ export PIN_ROOT=/path-to-intriguer/third_party/pin-3.7-97619-0d0c92f4f/
+$ export PIN_ROOT=/path-to-intriguer/third_party/pin-3.13-98189-g60a6ef199/
 
 $ cd pintool
 $ make -j$(nproc)

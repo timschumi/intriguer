@@ -28,7 +28,7 @@ RUN sed -i 's|^deb \(.*\)$|deb \1\ndeb-src \1|g' /etc/apt/sources.list && \
 
 COPY . /intriguer
 
-ARG PIN_ROOT=/intriguer/third_party/pin-3.7-97619-0d0c92f4f/
+ARG PIN_ROOT=/intriguer/third_party/pin-3.13-98189-g60a6ef199/
 RUN cd /intriguer/third_party/z3 && \
     python scripts/mk_make.py && \
     cd build && \
