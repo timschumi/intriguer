@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN sed -i 's|^deb \(.*\)$|deb \1\ndeb-src \1|g' /etc/apt/sources.list && \
     apt update -y && \
     apt upgrade -y && \
