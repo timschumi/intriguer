@@ -47,12 +47,12 @@ void initMemTaint(MEM_TAINT_MAP* map1, ADDRINT addr1, MEM_TAINT_MAP* map2, ADDRI
 }
 
 void traceUnsupport(ADDRINT insAddr, std::string insDis){
-    output << "[Unsupport]" << " insDis: " << insDis << endl;
+    output << "[Unsupport]" << " insDis: " << insDis << std::endl;
 }
 
-VOID taintMOVS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp1, UINT32 readSize, ADDRINT memOp2, UINT32 writeSize)
+VOID taintMOVS(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT memOp1, UINT32 readSize, ADDRINT memOp2, UINT32 writeSize)
 {
-    list<MEM_TAINT*>::iterator i;
+    std::list<MEM_TAINT*>::iterator i;
     UINT64 readAddr = memOp1;
     UINT64 writeAddr = memOp2;
 
@@ -80,7 +80,7 @@ VOID taintMOVS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp1, U
     }
 }
 
-void taintRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, REG reg2, ADDRINT val, UINT32 size)
+void taintRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, REG reg2, ADDRINT val, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg1 = getTaintRegPointer(reg1);
@@ -101,7 +101,7 @@ void taintRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, REG r
     }
 }
 
-VOID taintRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, UINT32 size)
+VOID taintRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         // REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -114,7 +114,7 @@ VOID taintRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, UINT3
     } 
 }
 
-VOID taintMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID taintMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -149,7 +149,7 @@ VOID taintMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, R
     }
 }
 
-VOID taintRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, UINT32 size)
+VOID taintRegMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, UINT32 size)
 {
     UINT64 offset[32];
 
@@ -181,7 +181,7 @@ VOID taintRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, R
     }
 }
 
-VOID taintMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size)
+VOID taintMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -200,7 +200,7 @@ VOID taintMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, U
 }
 
 /* [TODO] */
-VOID taintMemMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT readAddr, UINT32 readSize, ADDRINT writeAddr, UINT32 writeSize)
+VOID taintMemMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT readAddr, UINT32 readSize, ADDRINT writeAddr, UINT32 writeSize)
 {
     for (UINT64 i = 0; i < writeSize; i++){
 
@@ -223,7 +223,7 @@ VOID taintMemMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT readAdd
     }
 }
 
-void taintSTOS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp, UINT32 writeSize)
+void taintSTOS(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT memOp, UINT32 writeSize)
 {
     REG reg;
     UINT64 addr = memOp;
@@ -276,7 +276,7 @@ void taintSTOS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp, UI
     }
 }
 
-VOID taintLODS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp, UINT32 readSize)
+VOID taintLODS(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT memOp, UINT32 readSize)
 {
     REG reg;
     UINT64 addr = memOp;
@@ -323,14 +323,14 @@ VOID taintLODS(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT memOp, UI
 }
 
 /* TODO */
-VOID taintLEA(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, UINT32 size)
+VOID taintLEA(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         removeRegTainted(reg1);
     } 
 }
 
-VOID traceCMPRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceCMPRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -360,7 +360,7 @@ VOID traceCMPRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     }
 }
 
-VOID tracePCMPRegReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, REG reg2, UINT32 size)
+VOID tracePCMPRegReg(ADDRINT insAddr, std::string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, REG reg2, UINT32 size)
 {
     UINT8 val1[REG_Size(reg1)];
     UINT8 val2[REG_Size(reg2)];
@@ -400,7 +400,7 @@ VOID tracePCMPRegReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCoun
     }
 }
 
-VOID traceCMPRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
+VOID traceCMPRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -411,7 +411,7 @@ VOID traceCMPRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceCMPRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
+VOID traceCMPRegMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
 {
     MEM_TAINT_MAP map;
     
@@ -426,7 +426,7 @@ VOID traceCMPRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     }
 }
 
-VOID tracePCMPRegMem(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, ADDRINT addr, UINT32 size)
+VOID tracePCMPRegMem(ADDRINT insAddr, std::string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, ADDRINT addr, UINT32 size)
 {
     UINT8 val[REG_Size(reg1)];
 
@@ -447,7 +447,7 @@ VOID tracePCMPRegMem(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCoun
     }
 }
 
-VOID traceCMPMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID traceCMPMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -462,7 +462,7 @@ VOID traceCMPMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
     }
 }
 
-VOID traceCMPMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceCMPMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
 
@@ -472,7 +472,7 @@ VOID traceCMPMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
         printTraceLog(insAddr, insDis, &map, (UINT8*) addr, imm, size);
 }
 
-VOID traceCMPS(ADDRINT insAddr, string insDis, UINT32 opCount, BOOL isFirst , ADDRINT addr1, ADDRINT addr2, UINT32 size, UINT32 count)
+VOID traceCMPS(ADDRINT insAddr, std::string insDis, UINT32 opCount, BOOL isFirst , ADDRINT addr1, ADDRINT addr2, UINT32 size, UINT32 count)
 {
     if(!isFirst){
         return ;
@@ -488,7 +488,7 @@ VOID traceCMPS(ADDRINT insAddr, string insDis, UINT32 opCount, BOOL isFirst , AD
     }
 }
 
-VOID traceArithRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceArithRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     UINT64 offset[32];
 
@@ -540,7 +540,7 @@ VOID traceArithRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, 
     }
 }
 
-VOID traceXORRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceXORRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -572,7 +572,7 @@ VOID traceXORRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     }
 }
 
-VOID traceArithRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
+VOID traceArithRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -582,7 +582,7 @@ VOID traceArithRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, 
     } 
 }
 
-VOID traceArithReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size)
+VOID traceArithReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -592,7 +592,7 @@ VOID traceArithReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADD
     } 
 }
 
-VOID traceArithMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID traceArithMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -608,7 +608,7 @@ VOID traceArithMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT ad
     }
 }
 
-VOID traceArithRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
+VOID traceArithRegMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -636,7 +636,7 @@ VOID traceArithRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, 
     }
 }
 
-VOID traceArithMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceArithMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
 
@@ -646,7 +646,7 @@ VOID traceArithMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT ad
         printTraceLog(insAddr, insDis, &map, (UINT8*) addr, imm, size);
 }
 
-VOID traceArithMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size)
+VOID traceArithMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -656,7 +656,7 @@ VOID traceArithMem(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr,
         printTraceLog(insAddr, insDis, &map, (UINT8*) addr, size);
 }
 
-VOID traceANDRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
+VOID traceANDRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -689,7 +689,7 @@ VOID traceANDRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceANDMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceANDMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
 
@@ -699,7 +699,7 @@ VOID traceANDMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
         printTraceLog(insAddr, insDis, &map, (UINT8*) addr, imm, size);
 }
 
-VOID traceORRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceORRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     UINT64 offset[32];
 
@@ -745,7 +745,7 @@ VOID traceORRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADD
 }
 
 
-VOID traceORMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID traceORMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
     
@@ -772,7 +772,7 @@ VOID traceORMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr,
     }
 }
 
-VOID traceSHLRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
+VOID traceSHLRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -801,7 +801,7 @@ VOID traceSHLRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceSHLRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceSHLRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -831,7 +831,7 @@ VOID traceSHLRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceSHLMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg, ADDRINT val, UINT32 size)
+VOID traceSHLMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -866,7 +866,7 @@ VOID traceSHLMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
     }
 }
 
-VOID traceSHLMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceSHLMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
 
@@ -899,7 +899,7 @@ VOID traceSHLMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
     }
 }
 
-VOID traceSHRRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
+VOID traceSHRRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size, UINT64 imm)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -928,7 +928,7 @@ VOID traceSHRRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceSHRRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceSHRRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -958,7 +958,7 @@ VOID traceSHRRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, AD
     } 
 }
 
-VOID traceSHRMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg, ADDRINT val, UINT32 size)
+VOID traceSHRMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -993,7 +993,7 @@ VOID traceSHRMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
     }
 }
 
-VOID traceSHRMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceSHRMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
 
@@ -1027,11 +1027,11 @@ VOID traceSHRMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr
 }
 
 //????
-VOID traceMULRegRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size, UINT64 imm)
+VOID traceMULRegRegImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, REG reg2, ADDRINT val2, UINT32 size, UINT64 imm)
 {
-    //output << hex << "[MUL]\t" << insAddr << ": " << insDis;
-    //output << " " << REG_StringShort(reg1) << " " << REG_StringShort(reg2) << " " << imm << endl;
-    //output << hex << "\t\t\tsize: " << size << endl; 
+    //output << std::hex << "[MUL]\t" << insAddr << ": " << insDis;
+    //output << " " << REG_StringShort(reg1) << " " << REG_StringShort(reg2) << " " << imm << std::endl;
+    //output << std::hex << "\t\t\tsize: " << size << std::endl; 
 
     if(checkAlreadyRegTainted(reg2)){
         // REG_TAINT* tempReg = getTaintRegPointer(reg1);
@@ -1045,7 +1045,7 @@ VOID traceMULRegRegImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1,
     } 
 }
 
-VOID traceMULRegMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size, UINT64 imm)
+VOID traceMULRegMemImm(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size, UINT64 imm)
 {
     MEM_TAINT_MAP map;
     
@@ -1057,7 +1057,7 @@ VOID traceMULRegMemImm(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1,
     } 
 }
 
-VOID traceXCHGRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceXCHGRegReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     REG_TAINT* tempReg1 = getTaintRegPointer(reg1);
     REG_TAINT* tempReg2 = getTaintRegPointer(reg2);
@@ -1084,7 +1084,7 @@ VOID traceXCHGRegReg(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, A
         removeRegTainted(reg2);
 }
 
-VOID traceXCHGMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID traceXCHGMemReg(ADDRINT insAddr, std::string insDis, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -1107,7 +1107,7 @@ VOID traceXCHGMemReg(ADDRINT insAddr, string insDis, UINT32 opCount, ADDRINT add
         removeRegTainted(reg1);
 }
 
-VOID traceXCHGRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
+VOID traceXCHGRegMem(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, ADDRINT addr, UINT32 size)
 {
     MEM_TAINT_MAP map;
 
@@ -1131,7 +1131,7 @@ VOID traceXCHGRegMem(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, A
 }
 
 /* temp cmpxchg handler */
-VOID traceCMPXCHGRegReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
+VOID traceCMPXCHGRegReg(ADDRINT insAddr, std::string insDis, CONTEXT* ctx, UINT32 opCount, REG reg1, ADDRINT val1, REG reg2, ADDRINT val2, UINT32 size)
 {
     UINT64 valAX = 0;
     REG regAX = REG_EAX;
@@ -1193,7 +1193,7 @@ VOID traceCMPXCHGRegReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opC
     }
 }
 
-VOID traceCMPXCHGMemReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
+VOID traceCMPXCHGMemReg(ADDRINT insAddr, std::string insDis, CONTEXT* ctx, UINT32 opCount, ADDRINT addr, REG reg1, ADDRINT val, UINT32 size)
 {
     UINT64 valAX = 0;
     REG regAX = REG_EAX;
@@ -1245,7 +1245,7 @@ VOID traceCMPXCHGMemReg(ADDRINT insAddr, string insDis, CONTEXT* ctx, UINT32 opC
     }
 }
 
-VOID traceBSWAP(ADDRINT insAddr, string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size)
+VOID traceBSWAP(ADDRINT insAddr, std::string insDis, UINT32 opCount, REG reg1, ADDRINT val, UINT32 size)
 {
     if(checkAlreadyRegTainted(reg1)){
         REG_TAINT* tempReg = getTaintRegPointer(reg1);

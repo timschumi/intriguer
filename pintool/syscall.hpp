@@ -3,7 +3,7 @@
 
 #include "pin.H"
 
-extern ofstream output;
+extern std::ofstream output;
 
 // Print syscall number and arguments
 VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2, ADDRINT arg3, ADDRINT arg4, ADDRINT arg5);

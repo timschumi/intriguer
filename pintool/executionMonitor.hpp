@@ -15,20 +15,20 @@
 
 using namespace std;
 
-KNOB<string> KnobTargetFile(KNOB_MODE_WRITEONCE,  "pintool",
+KNOB<std::string> KnobTargetFile(KNOB_MODE_WRITEONCE,  "pintool",
                           "i", "__NO_SUCH_FILE__",
                           "target file to trace");
 
-KNOB<string> KnobOutputFile(KNOB_MODE_WRITEONCE,  "pintool",
+KNOB<std::string> KnobOutputFile(KNOB_MODE_WRITEONCE,  "pintool",
                           "o", "__NO_SUCH_FILE__",
                           "output file");
 
-KNOB<string> KnobLogFile(KNOB_MODE_WRITEONCE,  "pintool",
+KNOB<std::string> KnobLogFile(KNOB_MODE_WRITEONCE,  "pintool",
                           "l", "__NO_SUCH_FILE__",
                           "output file");
 
-extern ofstream trace;
-extern string targetFileName;
+extern std::ofstream trace;
+extern std::string targetFileName;
 
 VOID Fini(INT32 code, VOID *v);
 

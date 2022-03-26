@@ -29,7 +29,7 @@ struct MEM_TAINT_MAP{
 
 struct MEM_TAINT_BASE{
     UINT64 base;
-    vector<MEM_TAINT*> vecAddressTainted;
+    std::vector<MEM_TAINT*> vecAddressTainted;
 };
 
 bool checkAlreadyRegTaintedOffset(REG reg, UINT8 offset);
@@ -48,6 +48,6 @@ void pushTaintReg(REG reg, UINT64 bitmap, UINT64 offset[], UINT64 size);
 bool taintReg(REG reg, UINT64 bitmap, UINT64 offset[]);
 bool removeRegTainted(REG reg);
 
-extern ofstream output;
+extern std::ofstream output;
 
 #endif

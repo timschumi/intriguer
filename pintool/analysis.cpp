@@ -19,7 +19,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertCall(
             ins, IPOINT_BEFORE, (AFUNPTR)taintMOVS,
             IARG_ADDRINT, INS_Address(ins),
-            IARG_PTR, new string(INS_Disassemble(ins)),
+            IARG_PTR, new std::string(INS_Disassemble(ins)),
             IARG_UINT32, INS_OperandCount(ins),
             IARG_MEMORYREAD_EA,
             IARG_UINT32, INS_MemoryReadSize(ins),
@@ -36,7 +36,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertCall(
             ins, IPOINT_BEFORE, (AFUNPTR)taintSTOS,
             IARG_ADDRINT, INS_Address(ins),
-            IARG_PTR, new string(INS_Disassemble(ins)),
+            IARG_PTR, new std::string(INS_Disassemble(ins)),
             IARG_UINT32, INS_OperandCount(ins),
             IARG_MEMORYWRITE_EA,
             IARG_UINT32, INS_MemoryWriteSize(ins),
@@ -52,7 +52,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertCall(
             ins, IPOINT_BEFORE, (AFUNPTR)taintLODS,
             IARG_ADDRINT, INS_Address(ins),
-            IARG_PTR, new string(INS_Disassemble(ins)),
+            IARG_PTR, new std::string(INS_Disassemble(ins)),
             IARG_UINT32, INS_OperandCount(ins),
             IARG_MEMORYREAD_EA,
             IARG_UINT32, INS_MemoryReadSize(ins),
@@ -69,7 +69,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceCMPS,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_FIRST_REP_ITERATION,
                 IARG_MEMORYREAD_EA,
@@ -82,7 +82,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceCMPS,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_BOOL, true,
                 IARG_MEMORYREAD_EA,
@@ -121,7 +121,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_ADDRINT, 0,
@@ -134,7 +134,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_REG_VALUE, INS_RegR(ins, OP_0),
@@ -150,7 +150,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_ADDRINT, 0,
@@ -161,7 +161,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_REG_VALUE, INS_RegR(ins, OP_0),
@@ -177,7 +177,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegMem,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_ADDRINT, 0,
@@ -189,7 +189,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPRegMem,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegR(ins, OP_0),
                         IARG_REG_VALUE, INS_RegR(ins, OP_0),
@@ -204,7 +204,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPMemReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_RegR(ins, OP_1),
@@ -216,7 +216,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceCMPMemReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -230,7 +230,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceCMPMemImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -256,7 +256,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)tracePCMPRegReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_CONTEXT,
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegR(ins, OP_0),
@@ -268,7 +268,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_END);
             }
         } 
@@ -278,7 +278,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)tracePCMPRegMem,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_CONTEXT,
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegR(ins, OP_0),
@@ -290,7 +290,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_END);
             }
 
@@ -304,7 +304,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)taintMemReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYWRITE_EA,
                 IARG_UINT32, INS_OperandReg(ins, OP_0),
@@ -317,7 +317,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)taintMemMem,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYREAD_EA,
                 IARG_UINT32, INS_MemoryReadSize(ins),
@@ -330,7 +330,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)taintMemImm,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYWRITE_EA,
                 IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -340,7 +340,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_END);
         }
 
@@ -352,7 +352,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)taintRegMem,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYREAD_EA,
                 IARG_UINT32, INS_RegW(ins, OP_0),
@@ -364,7 +364,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)taintMemMem,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYREAD_EA,
                 IARG_UINT32, INS_MemoryReadSize(ins),
@@ -376,7 +376,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_END);
         }
 
@@ -406,7 +406,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceXORRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -419,7 +419,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceORRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -433,7 +433,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_UINT32, INS_OperandReg(ins, OP_0),
                             IARG_ADDRINT, 0,
@@ -447,7 +447,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_UINT32, INS_OperandReg(ins, OP_0),
                             IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -464,7 +464,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceANDRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -476,7 +476,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -493,7 +493,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegMem,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegW(ins, OP_0),
                         IARG_ADDRINT, 0,
@@ -506,7 +506,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegMem,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_UINT32, INS_RegW(ins, OP_0),
                             IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -518,7 +518,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegMem,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_UINT32, INS_RegW(ins, OP_0),
                             IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -534,7 +534,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -547,7 +547,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceORMemReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -558,7 +558,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -574,7 +574,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceANDMemImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -585,7 +585,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -606,7 +606,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceArithMem,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYOP_EA, 0,
                 IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -616,7 +616,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceArithReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_OperandReg(ins, OP_0),
                 IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -628,7 +628,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_END);
         }
 
@@ -640,7 +640,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_OperandReg(ins, OP_1),
                 IARG_REG_VALUE, INS_OperandReg(ins, OP_1),
@@ -653,7 +653,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegMem,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_RegW(ins, OP_0),
                 IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -665,7 +665,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_END);
         }
 
@@ -682,7 +682,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_OperandReg(ins, OP_0),
                     IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -695,7 +695,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -711,7 +711,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceMULRegRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -726,7 +726,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceMULRegMemImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -743,7 +743,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_1),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_1),
@@ -757,7 +757,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_MEMORYREAD_EA,
                         IARG_UINT32, INS_RegW(ins, OP_0),
@@ -770,7 +770,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegW(ins, OP_0),
                         IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -780,7 +780,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_END);
                 }
             }
@@ -788,7 +788,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_END);
             }
         }
@@ -805,7 +805,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_OperandReg(ins, OP_0),
                     IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -819,7 +819,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithRegImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegW(ins, OP_0),
                     IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -833,7 +833,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_0),
@@ -846,7 +846,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -867,7 +867,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceSHLRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -880,7 +880,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceSHRRegReg,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_OperandReg(ins, OP_0),
                         IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -896,7 +896,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceSHLRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegW(ins, OP_0),
                         IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -908,7 +908,7 @@ VOID Instruction(INS ins, VOID *v)
                     INS_InsertCall(
                         ins, IPOINT_BEFORE, (AFUNPTR)traceSHRRegImm,
                         IARG_ADDRINT, INS_Address(ins),
-                        IARG_PTR, new string(INS_Disassemble(ins)),
+                        IARG_PTR, new std::string(INS_Disassemble(ins)),
                         IARG_UINT32, INS_OperandCount(ins),
                         IARG_UINT32, INS_RegW(ins, OP_0),
                         IARG_REG_VALUE, INS_RegW(ins, OP_0),
@@ -924,7 +924,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceArithMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_0),
@@ -939,7 +939,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceSHLMemImm,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -950,7 +950,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceSHRMemImm,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -964,7 +964,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceSHLMemReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -976,7 +976,7 @@ VOID Instruction(INS ins, VOID *v)
                         INS_InsertCall(
                             ins, IPOINT_BEFORE, (AFUNPTR)traceSHRMemReg,
                             IARG_ADDRINT, INS_Address(ins),
-                            IARG_PTR, new string(INS_Disassemble(ins)),
+                            IARG_PTR, new std::string(INS_Disassemble(ins)),
                             IARG_UINT32, INS_OperandCount(ins),
                             IARG_MEMORYREAD_EA,
                             IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -995,7 +995,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertCall(
             ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
             IARG_ADDRINT, INS_Address(ins),
-            IARG_PTR, new string(INS_Disassemble(ins)),
+            IARG_PTR, new std::string(INS_Disassemble(ins)),
             IARG_END);
 
         break;
@@ -1024,7 +1024,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegR(ins, OP_0),
                     IARG_UINT32, INS_RegW(ins, OP_0),
@@ -1037,7 +1037,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegW(ins, OP_0),
                     IARG_ADDRINT, 0,
@@ -1051,7 +1051,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegMem,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_RegW(ins, OP_0),
@@ -1063,7 +1063,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYWRITE_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -1076,7 +1076,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintMemImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYWRITE_EA,
                     IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -1086,7 +1086,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_END);
             }
         }
@@ -1118,7 +1118,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegR(ins, OP_0),
                     IARG_UINT32, INS_RegW(ins, OP_0),
@@ -1131,7 +1131,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_RegW(ins, OP_0),
                     IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -1146,7 +1146,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintRegMem,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_RegW(ins, OP_0),
@@ -1158,7 +1158,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYWRITE_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -1171,7 +1171,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)taintMemImm,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYWRITE_EA,
                     IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -1181,7 +1181,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertPredicatedCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_END);
             }
         }
@@ -1194,7 +1194,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceXCHGRegReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_OperandReg(ins, OP_0),
                 IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -1209,7 +1209,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceXCHGRegMem,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_UINT32, INS_OperandReg(ins, OP_0),        
                     IARG_REG_VALUE, INS_OperandReg(ins, OP_0),
@@ -1222,7 +1222,7 @@ VOID Instruction(INS ins, VOID *v)
                 INS_InsertCall(
                     ins, IPOINT_BEFORE, (AFUNPTR)traceXCHGMemReg,
                     IARG_ADDRINT, INS_Address(ins),
-                    IARG_PTR, new string(INS_Disassemble(ins)),
+                    IARG_PTR, new std::string(INS_Disassemble(ins)),
                     IARG_UINT32, INS_OperandCount(ins),
                     IARG_MEMORYREAD_EA,
                     IARG_UINT32, INS_OperandReg(ins, OP_1),
@@ -1240,7 +1240,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceCMPXCHGRegReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_CONTEXT,
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_OperandReg(ins, OP_0),
@@ -1255,7 +1255,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceCMPXCHGMemReg,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_CONTEXT,
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_MEMORYREAD_EA,
@@ -1273,7 +1273,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertPredicatedCall(
             ins, IPOINT_BEFORE, (AFUNPTR)taintLEA,
             IARG_ADDRINT, INS_Address(ins),
-            IARG_PTR, new string(INS_Disassemble(ins)),
+            IARG_PTR, new std::string(INS_Disassemble(ins)),
             IARG_UINT32, INS_OperandCount(ins),
             IARG_UINT32, INS_RegW(ins, OP_0),
             IARG_UINT32, INS_OperandWidth(ins, OP_0)/8,
@@ -1301,7 +1301,7 @@ VOID Instruction(INS ins, VOID *v)
         INS_InsertCall(
         ins, IPOINT_BEFORE, (AFUNPTR)traceUnsupport,
         IARG_ADDRINT, INS_Address(ins),
-        IARG_PTR, new string(INS_Disassemble(ins)),
+        IARG_PTR, new std::string(INS_Disassemble(ins)),
         IARG_END);
 
         break;
@@ -1310,7 +1310,7 @@ VOID Instruction(INS ins, VOID *v)
             INS_InsertCall(
                 ins, IPOINT_BEFORE, (AFUNPTR)traceBSWAP,
                 IARG_ADDRINT, INS_Address(ins),
-                IARG_PTR, new string(INS_Disassemble(ins)),
+                IARG_PTR, new std::string(INS_Disassemble(ins)),
                 IARG_UINT32, INS_OperandCount(ins),
                 IARG_UINT32, INS_OperandReg(ins, OP_0),
                 IARG_REG_VALUE, INS_OperandReg(ins, OP_0),

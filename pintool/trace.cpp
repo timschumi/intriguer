@@ -1,6 +1,6 @@
 #include "trace.hpp"
 
-ofstream trace;
+std::ofstream trace;
 
 void printTraceLogReg(REG_TAINT* reg, UINT64 size){
     trace << "{";
@@ -35,13 +35,13 @@ void printTraceLogMem(MEM_TAINT_MAP* map, UINT64 size){
 //print value
 void printTraceLogVal(UINT8* val, UINT64 size){
     for(UINT64 c=0; c < size; c++){
-        trace << setw(2) << setfill('0') << hex << int(*(val+c));
+        trace << std::setw(2) << std::setfill('0') << std::hex << int(*(val+c));
     }
 }
 
 //trace reg
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
 
@@ -49,12 +49,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, UI
 
     printTraceLogVal((UINT8*)&val, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg imm
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, UINT64 imm, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val, UINT64 imm, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
 
@@ -66,12 +66,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, UI
 
     printTraceLogVal((UINT8*)&imm, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg reg
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val1, REG_TAINT* reg2, UINT64 val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val1, REG_TAINT* reg2, UINT64 val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogReg(reg2, size);
@@ -84,12 +84,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val1, R
     
     printTraceLogVal((UINT8*)&val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg reg imm
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, REG_TAINT* reg2, UINT64 val2, UINT64 imm, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val, REG_TAINT* reg2, UINT64 val2, UINT64 imm, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogReg(reg2, size);
@@ -106,12 +106,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, RE
 
     printTraceLogVal((UINT8*)&imm, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg mem imm
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, MEM_TAINT_MAP* map, UINT8* val2, UINT64 imm, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val, MEM_TAINT_MAP* map, UINT8* val2, UINT64 imm, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogMem(map, size);
@@ -128,12 +128,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val, ME
 
     printTraceLogVal((UINT8*)&imm, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg mem
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val1, MEM_TAINT_MAP* map, UINT8* val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT64 val1, MEM_TAINT_MAP* map, UINT8* val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogMem(map, size);
@@ -146,12 +146,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT64 val1, M
 
     printTraceLogVal(val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace mem reg
-void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val1, REG_TAINT* reg, UINT64 val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, MEM_TAINT_MAP* map, UINT8* val1, REG_TAINT* reg, UINT64 val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogMem(map, size);
     printTraceLogReg(reg, size);
@@ -164,12 +164,12 @@ void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val
 
     printTraceLogVal((UINT8*)&val2, size);
     
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace mem mem
-void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map1, UINT8* val1, MEM_TAINT_MAP* map2, UINT8* val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, MEM_TAINT_MAP* map1, UINT8* val1, MEM_TAINT_MAP* map2, UINT8* val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogMem(map1, size);
     printTraceLogMem(map2, size);
@@ -182,12 +182,12 @@ void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map1, UINT8* va
 
     printTraceLogVal(val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace mem
-void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val,UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, MEM_TAINT_MAP* map, UINT8* val,UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogMem(map, size);
 
@@ -195,12 +195,12 @@ void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val
 
     printTraceLogVal(val, size); 
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace mem imm
-void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val1, UINT64 val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, MEM_TAINT_MAP* map, UINT8* val1, UINT64 val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogMem(map, size);
 
@@ -212,12 +212,12 @@ void printTraceLog(UINT64 insAddr, string insDis, MEM_TAINT_MAP* map, UINT8* val
 
     printTraceLogVal((UINT8*)&val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg reg SIMD
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT8* val1, REG_TAINT* reg2, UINT8* val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT8* val1, REG_TAINT* reg2, UINT8* val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogReg(reg2, size);
@@ -230,12 +230,12 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT8* val1, R
     
     printTraceLogVal(val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }
 
 //trace reg mem SIMD
-void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT8* val1, MEM_TAINT_MAP* map, UINT8* val2, UINT64 size){
-    trace << hex << "0x" << insAddr << "." << insDis << ".";
+void printTraceLog(UINT64 insAddr, std::string insDis, REG_TAINT* reg, UINT8* val1, MEM_TAINT_MAP* map, UINT8* val2, UINT64 size){
+    trace << std::hex << "0x" << insAddr << "." << insDis << ".";
 
     printTraceLogReg(reg, size);
     printTraceLogMem(map, size);
@@ -248,5 +248,5 @@ void printTraceLog(UINT64 insAddr, string insDis, REG_TAINT* reg, UINT8* val1, M
 
     printTraceLogVal(val2, size);
 
-    trace << "." << endl;
+    trace << "." << std::endl;
 }

@@ -23,7 +23,7 @@ UINT64 taintMemoryStart;
 UINT64 mmapSize;
 UINT64 targetFileFd=0xFFFFFFFF;
 
-string targetFileName;
+std::string targetFileName;
 
 VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2, ADDRINT arg3, ADDRINT arg4, ADDRINT arg5)
 {
@@ -45,7 +45,7 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
 
     if(num == __NR_read){
         output << "[READ FILE]\t";
-        output << hex << "0x" << ip << ":\tfd: " << arg0 << endl;
+        output << std::hex << "0x" << ip << ":\tfd: " << arg0 << std::endl;
 
         taintMemoryStart = static_cast<INT64>(arg1);
 
@@ -57,11 +57,11 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
     } else if(num == __NR_open){
         output << "[OPEN FILE]\t";
 
-        output << hex << "0x" << ip << ":\t" << (char*)arg0 << endl;
+        output << std::hex << "0x" << ip << ":\t" << (char*)arg0 << std::endl;
 
         if(strstr((char*)arg0, targetFileName.c_str()) != NULL){
             isTargetFileOpen = true;
-            output << "\tOpen target file" << endl;
+            output << "\tOpen target file" << std::endl;
 
             isTaintStart = true;
         }
@@ -71,7 +71,7 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
         }
 
     } else if(num == __NR_close){
-        output << hex << "[CLOSE FILE]\t\tfd: " << arg0 << endl;
+        output << std::hex << "[CLOSE FILE]\t\tfd: " << arg0 << std::endl;
 
         if(arg0 == targetFileFd){
             targetFileFd = 0xFFFFFFFF;
@@ -81,14 +81,14 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
             isTaintStart = true;
         }
     } else if(num == __NR_lseek){
-        output << hex << "[LSEEK FILE]\t\tfd: " << arg0 << " offset: " << arg1 << " whence: " << arg2 << endl;
+        output << std::hex << "[LSEEK FILE]\t\tfd: " << arg0 << " offset: " << arg1 << " whence: " << arg2 << std::endl;
 
         if(arg0 == targetFileFd){
             isLseekCalled = true;
         }
 
     } else if(num == 140){
-        output << hex << "[LLSEEK FILE]\t\tfd: " << arg0 << " offseth: " << arg1 << " offsetl: " << arg2 << " result: " << arg3 <<" whence: " << arg4 << endl;
+        output << std::hex << "[LLSEEK FILE]\t\tfd: " << arg0 << " offseth: " << arg1 << " offsetl: " << arg2 << " result: " << arg3 <<" whence: " << arg4 << std::endl;
         
         if(arg0 == targetFileFd){
             llseekResult = (UINT64*)arg3;
@@ -96,12 +96,12 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
         }
 
     } else if (num == __NR_mmap){
-        output << hex << "[MMAP]\t\taddr: " << arg0 << " length: " << arg1 << " prot: " << arg2 << " flags: " << arg3 <<" fd: " << arg4 << " offset: " << arg5 << endl;
+        output << std::hex << "[MMAP]\t\taddr: " << arg0 << " length: " << arg1 << " prot: " << arg2 << " flags: " << arg3 <<" fd: " << arg4 << " offset: " << arg5 << std::endl;
     }
 
     #if defined(TARGET_LINUX) && defined(TARGET_IA32) 
     else if (num == __NR_mmap2){
-        output << hex << "[MMAP2]\t\taddr: " << arg0 << " length: " << arg1 << " prot: " << arg2 << " flags: " << arg3 <<" fd: " << arg4 << " pgoffset: " << arg5 << endl;
+        output << std::hex << "[MMAP2]\t\taddr: " << arg0 << " length: " << arg1 << " prot: " << arg2 << " flags: " << arg3 <<" fd: " << arg4 << " pgoffset: " << arg5 << std::endl;
         if(arg4 == targetFileFd && arg4 != 0xFFFFFFFF){
             isTargetFileMmap2 = true;
             mmapSize = arg1;
@@ -117,7 +117,7 @@ VOID SysAfter(ADDRINT ret)
         targetFileFd = ret;
         isTargetFileOpen = false;
         globalOffset = 0;
-        output << "\topen file descriptor " << targetFileFd << endl;
+        output << "\topen file descriptor " << targetFileFd << std::endl;
     } 
 
     if(isTargetFileRead && ret >= 0){
@@ -132,22 +132,22 @@ VOID SysAfter(ADDRINT ret)
         }
           
         output << "[TAINT]\t\t\t0x" << size << " bytes tainted from ";
-        output << hex << "0x" << taintMemoryStart << " to 0x" << taintMemoryStart+size;
-        output << " by file offset 0x" << globalOffset-size << " (via read)" << endl;
+        output << std::hex << "0x" << taintMemoryStart << " to 0x" << taintMemoryStart+size;
+        output << " by file offset 0x" << globalOffset-size << " (via read)" << std::endl;
     }
 
     if(isLseekCalled == true){
         isLseekCalled = false;
         globalOffset = ret;
 
-        output << "[LSEEK] result: " << llseekResult << endl;
+        output << "[LSEEK] result: " << llseekResult << std::endl;
     }
 
     if(isLlseekCalled == true){
         isLlseekCalled = false;
         globalOffset = *llseekResult;
 
-        output << "[LLSEEK] result: " << *llseekResult << endl;
+        output << "[LLSEEK] result: " << *llseekResult << std::endl;
     }
 
     if(isTargetFileMmap2){
@@ -161,7 +161,7 @@ VOID SysAfter(ADDRINT ret)
             }
 
             output << "[TAINT]\t\t\t0x" << mmapSize << " bytes tainted from ";
-            output << hex << "0x" << mmapResult << " to 0x" << mmapResult+mmapSize << " (via mmap2)" << endl;
+            output << std::hex << "0x" << mmapResult << " to 0x" << mmapResult+mmapSize << " (via mmap2)" << std::endl;
         }
     }
 }

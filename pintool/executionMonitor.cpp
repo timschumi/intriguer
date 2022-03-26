@@ -51,7 +51,7 @@ END_LEGAL */
 
 using namespace std;
 
-ofstream output;
+std::ofstream output;
 
 VOID Fini(INT32 code, VOID *v)
 {
@@ -78,8 +78,8 @@ int main(int argc, char *argv[])
 
     PIN_InitSymbols();
 
-    string outputFileName;
-    string logFileName;
+    std::string outputFileName;
+    std::string logFileName;
 
     targetFileName = KnobTargetFile.Value();
     outputFileName = KnobOutputFile.Value();

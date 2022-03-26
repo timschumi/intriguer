@@ -11,13 +11,13 @@
 
 using namespace std;
 
-list<MEM_TAINT_BASE*> listBaseAddress;
-vector<MEM_TAINT*> addressTainted;
+std::list<MEM_TAINT_BASE*> listBaseAddress;
+std::vector<MEM_TAINT*> addressTainted;
 
-list<REG_TAINT*> regsTainted;
+std::list<REG_TAINT*> regsTainted;
 
 bool checkAlreadyRegTaintedOffset(REG reg, UINT8 offset){
-    list<REG_TAINT*>::iterator i;
+    std::list<REG_TAINT*>::iterator i;
 
     for(i = regsTainted.begin(); i != regsTainted.end(); i++){
         if((*i)->reg == reg){
@@ -34,7 +34,7 @@ bool checkAlreadyRegTaintedOffset(REG reg, UINT8 offset){
 
 bool checkAlreadyRegTainted(REG reg)
 {
-    list<REG_TAINT*>::iterator i;
+    std::list<REG_TAINT*>::iterator i;
 
     for(i = regsTainted.begin(); i != regsTainted.end(); i++){
         if((*i)->reg == reg){
@@ -46,7 +46,7 @@ bool checkAlreadyRegTainted(REG reg)
 }
 
 MEM_TAINT* getTaintMemPointer(UINT64 address){
-    list<MEM_TAINT_BASE*>::iterator itBase;
+    std::list<MEM_TAINT_BASE*>::iterator itBase;
 
     for(itBase = listBaseAddress.begin(); itBase != listBaseAddress.end(); itBase++){
         if((*itBase)->base == (address & 0xfffffffffffff000)){
@@ -58,7 +58,7 @@ MEM_TAINT* getTaintMemPointer(UINT64 address){
 }
 
 bool checkAlreadyMemTainted(UINT64 address){
-    list<MEM_TAINT_BASE*>::iterator itBase;
+    std::list<MEM_TAINT_BASE*>::iterator itBase;
 
     for(itBase = listBaseAddress.begin(); itBase != listBaseAddress.end(); itBase++){
         if((*itBase)->base == (address & 0xfffffffffffff000)){
@@ -74,7 +74,7 @@ bool checkAlreadyMemTainted(UINT64 address){
 
 VOID removeMemTainted(UINT64 address)
 {
-    list<MEM_TAINT_BASE*>::iterator itBase;
+    std::list<MEM_TAINT_BASE*>::iterator itBase;
 
     for(itBase = listBaseAddress.begin(); itBase != listBaseAddress.end(); itBase++){
         if((*itBase)->base == (address & 0xfffffffffffff000)){
@@ -96,7 +96,7 @@ VOID removeMemTainted(UINT64 address, UINT64 size)
 VOID addMemTainted(UINT64 address, UINT64 offset)
 {
     MEM_TAINT* mem = new MEM_TAINT;
-    list<MEM_TAINT_BASE*>::iterator itBase;
+    std::list<MEM_TAINT_BASE*>::iterator itBase;
 
     mem->address = address;
     mem->offset = offset;
@@ -150,7 +150,7 @@ VOID addMemTainted(UINT64 address, UINT64 size, UINT64 bitmap, UINT64 offset[]){
 }
 
 REG_TAINT* getTaintRegPointer(REG reg){
-    list<REG_TAINT*>::iterator i;
+    std::list<REG_TAINT*>::iterator i;
 
     for(i = regsTainted.begin(); i != regsTainted.end(); i++){
         if((*i)->reg == reg){
