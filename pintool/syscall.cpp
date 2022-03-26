@@ -9,6 +9,7 @@
 #include "trace.hpp"
 
 UINT64 globalOffset;
+UINT64 preadOffset = 0xFFFFFFFF;
 
 bool isTargetFileOpen=false;
 bool isTargetFileRead=false;
@@ -52,6 +53,18 @@ VOID SysBefore(ADDRINT ip, ADDRINT num, ADDRINT arg0, ADDRINT arg1, ADDRINT arg2
         if(arg0 == targetFileFd || arg0 == 0){
             isTargetFileRead = true;
             isTaintStart = true;
+        }
+
+    } else if (num == __NR_pread64) {
+        output << "[PREAD64 FILE]\t";
+        output << std::hex << "0x" << ip << ":\tfd: " << arg0 << std::endl;
+
+        taintMemoryStart = static_cast<INT64>(arg1);
+
+        if(arg0 == targetFileFd || arg0 == 0){
+            isTargetFileRead = true;
+            isTaintStart = true;
+            preadOffset = static_cast<INT64>(arg3);
         }
 
     } else if(num == __NR_open){
@@ -140,16 +153,20 @@ VOID SysAfter(ADDRINT ret)
         isTargetFileRead = false;
         
         UINT64 size = ret;
+        UINT64 *offset = &globalOffset;
+
+        if (preadOffset != 0xFFFFFFFF)
+            offset = &preadOffset;
 
         for (UINT64 i = 0; i < size; i++){
-            addMemTainted(taintMemoryStart + i, globalOffset);
-
-            globalOffset++;
+            addMemTainted(taintMemoryStart + i, (*offset)++);
         }
           
         output << "[TAINT]\t\t\t0x" << size << " bytes tainted from ";
         output << std::hex << "0x" << taintMemoryStart << " to 0x" << taintMemoryStart+size;
-        output << " by file offset 0x" << globalOffset-size << " (via read)" << std::endl;
+        output << " by file offset 0x" << (*offset)-size << " (via read)" << std::endl;
+
+        preadOffset = 0xFFFFFFFF;
     }
 
     if(isLseekCalled == true){
